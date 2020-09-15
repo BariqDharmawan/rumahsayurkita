@@ -1,0 +1,1 @@
+[02-Jan-2019 13:23:37 Asia/Kolkata] PHP Fatal error:  Allowed memory size of 268435456 bytes exhausted (tried to allocate 20480 bytes) in /home/vlcarsly/public_html/dailydoze/vendor/laravel/framework/src/Illuminate/Database/Connectors/Connector.php on line 67
