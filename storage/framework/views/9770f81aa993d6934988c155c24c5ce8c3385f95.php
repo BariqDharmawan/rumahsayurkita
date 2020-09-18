@@ -21,6 +21,9 @@
                     <div class="box">
                         <div class="box-header">
                             <h3 class="box-title"><?php echo e(trans('labels.Must Be Restocked')); ?> </h3>
+                            <div>
+                                <a class="btn btn-success" href="<?php echo e(route('mustberestocked.download')); ?>">Download xlsx</a>
+                            </div>
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body">

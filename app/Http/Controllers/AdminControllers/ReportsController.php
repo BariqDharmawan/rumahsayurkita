@@ -14,6 +14,8 @@ use Illuminate\Http\Request;
 use Lang;
 
 //for requesting a value
+use Illuminate\Support\Carbon;
+use App\Exports\MustBeRestockedExport;
 
 class ReportsController extends Controller
 {
@@ -204,13 +206,13 @@ class ReportsController extends Controller
         $myVar = new SiteSettingController();
         $result['currency'] = $myVar->getSetting();
         $result['commonContent'] = $myVar->Setting->commonContent();
-        // dd($result);
         return view("admin.reports.mustberestocked", $title)->with('result', $result);
     }
 
     public function downloadMustBeRestocked(Request $request)
     {
-        return response("wkwk");
+        $date = Carbon::now()->format('d-m-Y');
+        return (new MustBeRestockedExport)->download("MustBeRestocked_{$date}.xlsx");
     }
 
     //lowinstock
