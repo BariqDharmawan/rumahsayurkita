@@ -153,6 +153,61 @@ class ReportsController extends Controller
 
     }
 
+    // must be restocked
+    public function mustBeRestocked(Request $request)
+    {
+        $title = array('pageTitle' => Lang::get("labels.Must Be Restocked"));
+
+        $language_id = 1;
+
+        $products = DB::table('products')
+            ->leftJoin('products_description', 'products_description.products_id', '=', 'products.products_id')
+        //->leftJoin('inventory','inventory.products_id','=','products.products_id')
+            ->where('products_description.language_id', '=', $language_id)
+            ->orderBy('products.products_id', 'DESC')
+            ->get();
+
+        $result2 = array();
+        $products_array = array();
+        $index = 0;
+        $lowLimit = 0;
+        $outOfStock = 0;
+        foreach ($products as $product) {
+
+            if ($product->products_type == 1) {
+
+            } elseif ($product->products_type == 0 or $product->products_type == 2) {
+                $inventoriesIn = DB::table('inventory')->where('products_id', $product->products_id)->where('stock_type', 'in')->get();
+                $inventoriesOut = DB::table('inventory')->where('products_id', $product->products_id)->where('stock_type', 'out')->get();
+                $stockIn = 0;
+                $stockOut = 0;
+                foreach ($inventoriesIn as $inventory) {
+                    $stockIn += $inventory->stock;
+                }
+                foreach ($inventoriesOut as $inventory) {
+                    $stockOut += $inventory->stock;
+                }
+                $stocks = $stockIn - $stockOut;
+
+                if ($stocks < 0) {
+                    $product->quantityToRestocked = -$stocks;
+                    $product->image_path = DB::table('image_categories')->where('image_id', $product->products_image)->where('image_type', 'THUMBNAIL')->first()->path;
+                    array_push($products_array, $product);
+                }
+
+            }
+        }
+
+        $result['mustBeRestocked'] = $products_array;
+
+        //get function from other controller
+        $myVar = new SiteSettingController();
+        $result['currency'] = $myVar->getSetting();
+        $result['commonContent'] = $myVar->Setting->commonContent();
+        // dd($result);
+        return view("admin.reports.mustberestocked", $title)->with('result', $result);
+    }
+
     //lowinstock
     public function lowinstock(Request $request)
     {

@@ -389,6 +389,7 @@ Route::group(['middleware' => ['installer']], function () {
         Route::get('/statsproductsliked', 'ReportsController@statsProductsLiked')->middleware('report');
         Route::get('/outofstock', 'ReportsController@outofstock')->middleware('report');
         Route::get('/lowinstock', 'ReportsController@lowinstock')->middleware('report');
+        Route::get('/mustberestocked', 'ReportsController@mustBeRestocked')->middleware('report');
         Route::get('/stockin', 'ReportsController@stockin')->middleware('report');
         Route::post('/productSaleReport', 'ReportsController@productSaleReport')->middleware('report');        
         Route::get('/driversreport', 'ReportsController@driversreport')->middleware('report');     
