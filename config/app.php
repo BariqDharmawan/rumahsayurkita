@@ -188,6 +188,7 @@ return [
         'Folklore\Image\ImageServiceProvider',
         Kyslik\ColumnSortable\ColumnSortableServiceProvider::class,
         Vectorcoder\LaravelInstaller\Providers\LaravelInstallerServiceProvider::class,
+        Maatwebsite\Excel\ExcelServiceProvider::class,
 
 
     ],
@@ -243,7 +244,7 @@ return [
         'Image' => 'Folklore\Image\Facades\Image',
         'Madzipper' => Madnest\Madzipper\Madzipper::class,
         'PaytmWallet' => Anand\LaravelPaytmWallet\Facades\PaytmWallet::class,
-
+        'Excel' => Maatwebsite\Excel\Facades\Excel::class,
 
 
     ],

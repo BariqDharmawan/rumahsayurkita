@@ -208,6 +208,11 @@ class ReportsController extends Controller
         return view("admin.reports.mustberestocked", $title)->with('result', $result);
     }
 
+    public function downloadMustBeRestocked(Request $request)
+    {
+        return response("wkwk");
+    }
+
     //lowinstock
     public function lowinstock(Request $request)
     {
