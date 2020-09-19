@@ -101,6 +101,20 @@
                     </div>
                   </div>
                 <!-- ./col -->
+                  
+                    <div class="col-lg-4 col-xs-6">
+                    <!-- small box -->
+                    <div class="small-box bg-teal">
+                        <div class="inner">
+                            <h3><?php if(!empty($result['commonContent']['currency']->symbol_left)): ?> <?php echo e($result['commonContent']['currency']->symbol_left); ?> <?php endif; ?> <?php echo e($result['todayNetProfit']['value']); ?> <?php if(!empty($result['commonContent']['currency']->symbol_right)): ?> <?php echo e($result['commonContent']['currency']->symbol_right); ?> <?php endif; ?></h3>
+                        <p><?php echo e(trans('labels.Today Net Profit')); ?> <?php echo e($result['todayNetProfit']['date']); ?></p>
+                        </div>
+                        <div class="icon">
+                            <i class="ion ion-bag"></i>
+                        </div>
+                        <a href="<?php echo e(URL::to('admin/orders/display')); ?>" class="small-box-footer" data-toggle="tooltip" data-placement="bottom" title="<?php echo e(trans('labels.viewAllOrders')); ?>"><?php echo e(trans('labels.viewAllOrders')); ?> <i class="fa fa-arrow-circle-right"></i></a>
+                        </div>
+                    </div>
 
               </div>
 

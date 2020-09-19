@@ -2396,7 +2396,8 @@ return [
 	'Clear Cache'=>'Clear Cache',
 	'Cache Cleared Successfully'=>'Cache Cleared Successfully!',
 	'Clear cache after update your this settings'=>'Note: Clear cache after update your this settings',
-	'Language icon size should be 30x20'=>'Language icon size should be 30x20'
+	'Language icon size should be 30x20'=>'Language icon size should be 30x20',
+	'Today Net Profit'=>'Today Net Profit',
 	
 	
 
