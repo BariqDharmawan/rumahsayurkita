@@ -2398,6 +2398,8 @@ return [
 	'Clear cache after update your this settings'=>'Note: Clear cache after update your this settings',
 	'Language icon size should be 30x20'=>'Language icon size should be 30x20',
 	'Today Net Profit'=>'Today Net Profit',
+	'Net Profit Per Item'=>'Net Profit Per Item',
+	'Net Profit'=>'Net Profit',
 	
 	
 

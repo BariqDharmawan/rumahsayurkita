@@ -390,7 +390,9 @@ Route::group(['middleware' => ['installer']], function () {
         Route::get('/outofstock', 'ReportsController@outofstock')->middleware('report');
         Route::get('/lowinstock', 'ReportsController@lowinstock')->middleware('report');
         Route::get('/mustberestocked', 'ReportsController@mustBeRestocked')->middleware('report');
+        Route::get('/netprofitperitem', 'ReportsController@profitPerItem')->middleware('report');
         Route::get('/mustberestocked/download', 'ReportsController@downloadMustBeRestocked')->middleware('report')->name('mustberestocked.download');
+        Route::get('/netprofitperitem/download', 'ReportsController@downloadProfitPerItem')->middleware('report')->name('netprofitperitem.download');
         Route::get('/stockin', 'ReportsController@stockin')->middleware('report');
         Route::post('/productSaleReport', 'ReportsController@productSaleReport')->middleware('report');        
         Route::get('/driversreport', 'ReportsController@driversreport')->middleware('report');     

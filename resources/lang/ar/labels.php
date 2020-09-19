@@ -1568,5 +1568,7 @@ return [
 	'Side Banner 12'=>'Side Banner 12',
 	'Side Banner 13'=>'Side Banner 13',
 	'Today Net Profit'=>'Today Net Profit',
+	'Net Profit Per Item'=>'Net Profit Per Item',
+	'Net Profit'=>'Net Profit',
 
 ];

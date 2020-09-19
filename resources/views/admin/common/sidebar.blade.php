@@ -119,7 +119,7 @@
       <?php
             if($result['commonContent']['roles']!= null and $result['commonContent']['roles']->reports_view == 1){
           ?>
-        <li class="treeview {{ Request::is('admin/statscustomers') ? 'active' : '' }} {{ Request::is('admin/outofstock') ? 'active' : '' }} {{ Request::is('admin/statsproductspurchased') ? 'active' : '' }} {{ Request::is('admin/statsproductsliked') ? 'active' : '' }} {{ Request::is('admin/lowinstock') ? 'active' : '' }} {{ Request::is('admin/mustberestocked') ? 'active' : '' }}">
+        <li class="treeview {{ Request::is('admin/statscustomers') ? 'active' : '' }} {{ Request::is('admin/outofstock') ? 'active' : '' }} {{ Request::is('admin/statsproductspurchased') ? 'active' : '' }} {{ Request::is('admin/statsproductsliked') ? 'active' : '' }} {{ Request::is('admin/lowinstock') ? 'active' : '' }} {{ Request::is('admin/mustberestocked') ? 'active' : '' }} {{ Request::is('admin/netprofitperitem') ? 'active' : '' }}">
           <a href="#">
             <i class="fa fa-file-text-o" aria-hidden="true"></i>
   <span>{{ trans('labels.link_reports') }}</span> <i class="fa fa-angle-left pull-right"></i>
@@ -131,7 +131,9 @@
             <li class="{{ Request::is('admin/statscustomers') ? 'active' : '' }} "><a href="{{ URL::to('admin/statscustomers')}}"><i class="fa fa-circle-o"></i> {{ trans('labels.link_customer_orders_total') }}</a></li>
             <li class="{{ Request::is('admin/statsproductsliked') ? 'active' : '' }}"><a href="{{ URL::to('admin/statsproductsliked')}}"><i class="fa fa-circle-o"></i> {{ trans('labels.link_products_liked') }}</a></li>
             <li class="{{ Request::is('admin/mustberestocked') ? 'active' : '' }}"><a href="{{ URL::to('admin/mustberestocked')}}"><i class="fa fa-circle-o"></i> {{ trans('labels.link_must_be_restocked') }}</a></li>
+            <li class="{{ Request::is('admin/netprofitperitem') ? 'active' : '' }}"><a href="{{ URL::to('admin/netprofitperitem')}}"><i class="fa fa-circle-o"></i> {{ trans('labels.Net Profit Per Item') }}</a></li>
           </ul>
+          Net Profit Per Item
         </li>
       <?php } ?>
      

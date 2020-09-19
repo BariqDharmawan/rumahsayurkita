@@ -16,6 +16,7 @@ use Lang;
 //for requesting a value
 use Illuminate\Support\Carbon;
 use App\Exports\MustBeRestockedExport;
+use App\Exports\NetProfitPerItemExport;
 
 class ReportsController extends Controller
 {
@@ -168,12 +169,7 @@ class ReportsController extends Controller
             ->where('products_description.language_id', '=', $language_id)
             ->orderBy('products.products_id', 'DESC')
             ->get();
-
-        $result2 = array();
         $products_array = array();
-        $index = 0;
-        $lowLimit = 0;
-        $outOfStock = 0;
         foreach ($products as $product) {
 
             if ($product->products_type == 1) {
@@ -708,5 +704,73 @@ class ReportsController extends Controller
         $result['commonContent'] = $myVar->Setting->commonContent();
 
         return view("admin.reports.driverreportsdetail", $title)->with('result', $result);
+    }
+
+    public function profitPerItem(Request $request)
+    {
+        $title = array('pageTitle' => Lang::get("labels.Net Profit Per Item"));
+        $language_id = 1;
+        $products = $this->getProfitPerItem();
+        $result = [
+            'data' => $products,
+            'date' => Carbon::today()->format('F Y')
+        ];
+        $myVar = new SiteSettingController();
+        $result['currency'] = $myVar->getSetting();
+        $result['commonContent'] = $myVar->Setting->commonContent();
+        return view('admin.reports.profitperitem')->with('result', $result);
+    }
+
+    public function downloadProfitPerItem()
+    {
+        $date = Carbon::now()->format('F Y');
+        return (new NetProfitPerItemExport)->download("NetProfitPerItem{$date}.xlsx");
+    }
+
+    private function getProfitPerItem()
+    {
+        $firstDayThisMonth = Carbon::today()->startOfMonth();
+        $products = DB::table('products')
+            ->leftJoin('products_description', 'products_description.products_id', '=', 'products.products_id')
+            ->paginate(10);
+        foreach ($products as $product) {
+            $product->netProfit = 0;
+            $product->image_path = DB::table('image_categories')->
+                where('image_id', $product->products_image)->
+                where('image_type', 'THUMBNAIL')->
+                first()->path;
+        }
+        $ordersThisMonth = DB::table('orders')
+            ->where('customers_id', '!=', '')
+            ->where('date_purchased', '>=', $firstDayThisMonth->format('Y-m-d H:m:s'))
+            ->get();
+        foreach ($ordersThisMonth as $order) {
+            $history = DB::table('orders_status_history')
+                ->where('orders_id', $order->orders_id)
+                ->orderBy('date_added', 'DESC')
+                ->first();
+            if ($history->orders_status_id != 3 && $history->orders_status_id != 4) {
+                $order_products = DB::table('orders_products')
+                    ->where('orders_id', $order->orders_id)
+                    ->get();
+                foreach ($order_products as $order_product) {
+                    $purchasedPrice = 0;
+                    $soldPrice = 0;
+                    $soldPrice += $order_product->final_price;
+                    $stock = DB::table('inventory')
+                        ->where('products_id', $order_product->products_id)
+                        ->where('stock_type', 'in')
+                        ->latest()
+                        ->first();
+                    $purchasedPrice += $stock->purchase_price * $order_product->products_quantity;
+                    foreach ($products as $product){
+                        if ($product->products_id == $order_product->products_id){
+                            $product->netProfit += $soldPrice - $purchasedPrice;
+                        }
+                    }
+                }
+            }
+        }
+        return $products;
     }
 }
