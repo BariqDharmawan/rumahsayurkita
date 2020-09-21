@@ -1,2 +1,0 @@
-# myadmin
-rajasayur
