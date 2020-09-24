@@ -1285,8 +1285,8 @@ class AdminController extends Controller
 						->where('products_id', $product->products_id)
 						->where('stock_type', 'in')
 						->latest()
-						->first();
-					$purchasedPrice += $stock->purchase_price * $product->products_quantity;
+                        ->first();
+                        $purchasedPrice = (empty($stock)) ? 0 : $purchasedPrice + ($stock->purchase_price * $product->products_quantity);
 				}
 			}
 		}

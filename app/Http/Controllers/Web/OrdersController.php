@@ -158,12 +158,6 @@ class OrdersController extends Controller
                         }
                         $req['attributes'] = $attr;
                     }
-                    $check = $this->products->getquantity($req);
-                    if ($products->customers_basket_quantity > $check['stock']) {
-                        session(['out_of_stock' => 1]);
-                        session(['out_of_stock_product' => $products->products_id]);
-                        return redirect('viewcart');
-                    }
 
                     $price += $products->final_price * $products->customers_basket_quantity;
                 }

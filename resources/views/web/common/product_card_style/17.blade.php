@@ -87,11 +87,7 @@
               </div>
 
               @if($products->products_type==0)
-                @if($products->defaultStock==0)
-                    <button type="button" class="btn-secondary btn icon swipe-to-top" products_id="{{$products->products_id}}" data-toggle="tooltip" data-placement="bottom" title="@lang('website.Out of Stock')"><i class="fas fa-shopping-bag"></i></button>
-                  @else
-                    <button type="button" class="btn-secondary btn icon swipe-to-top cart" products_id="{{$products->products_id}}" data-toggle="tooltip" data-placement="bottom" title="@lang('website.Add to Cart')"><i class="fas fa-shopping-bag"></i></button>
-                @endif
+                <button type="button" class="btn-secondary btn icon swipe-to-top cart" products_id="{{$products->products_id}}" data-toggle="tooltip" data-placement="bottom" title="@lang('website.Add to Cart')"><i class="fas fa-shopping-bag"></i></button>
               @endif
       
         </div>

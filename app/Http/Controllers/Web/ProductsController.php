@@ -214,7 +214,7 @@ class ProductsController extends Controller
 
         $result['min_price'] = $min_price;
         $result['max_price'] = $max_price;
-
+// dd($result);
         return view("web.shop", ['title' => $title, 'final_theme' => $final_theme])->with('result', $result);
 
     }

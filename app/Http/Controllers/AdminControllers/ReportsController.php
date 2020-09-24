@@ -762,7 +762,7 @@ class ReportsController extends Controller
                         ->where('stock_type', 'in')
                         ->latest()
                         ->first();
-                    $purchasedPrice += $stock->purchase_price * $order_product->products_quantity;
+                    $purchasedPrice = (empty($stock)) ? 0 : $purchasedPrice + ($stock->purchase_price * $product->products_quantity);
                     foreach ($products as $product){
                         if ($product->products_id == $order_product->products_id){
                             $product->netProfit += $soldPrice - $purchasedPrice;

@@ -53,10 +53,7 @@
                                
                             @if($products->products_type==0)
               @if(!in_array($products->products_id,$result['cartArray']))
-                  @if($products->defaultStock==0)
-
-                      <!-- <button type="button" class="btn btn-block  btn-danger swipe-to-top" products_id="{{$products->products_id}}" data-toggle="tooltip" data-placement="bottom" title="@lang('website.Out of Stock')">@lang('website.Out of Stock')</button> -->
-                  @elseif($products->products_min_order>1)
+                  @if($products->products_min_order>1)
                   <!-- <a class="btn btn-block  btn-secondary swipe-to-top" href="{{ URL::to('/product-detail/'.$products->products_slug)}}" data-toggle="tooltip" data-placement="bottom" title="@lang('website.View Detail')">@lang('website.View Detail')</a> -->
                   @else
 

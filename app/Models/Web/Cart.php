@@ -501,14 +501,6 @@ class Cart extends Model
 
                 //     return array('status' => 'exceed', 'defaultStock' => $result['detail']['product_data'][0]->defaultStock, 'already_added' => $exist[0]->customers_basket_quantity, 'remain_pieces' => $remain);
                 // }
-            } else {
-
-                //if ($request->quantity > $result['detail']['product_data'][0]->defaultStock || $request->quantity > $result['detail']['product_data'][0]->products_max_stock and $result['detail']['product_data'][0]->products_max_stock != null) {
-                if ($request->quantity > $default_stock) {
-                    $count = $request->quantity;
-                    $remain = $result['detail']['product_data'][0]->defaultStock - $count;
-                    return array('status' => 'exceed');
-                }
             }
         }
 

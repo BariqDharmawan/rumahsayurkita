@@ -35,13 +35,6 @@ class Order extends Model
                         $attr[$key] = $value->products_attributes_id;
                     }
                     $req['attributes'] = $attr;
-
-                }
-                $check = Products::getquantity($req);
-                if ($products->customers_basket_quantity > $check['stock']) {
-                    session(['out_of_stock' => 1]);
-                    session(['out_of_stock_product' => $products->products_id]);
-                    return redirect('viewcart');
                 }
             }
         }
