@@ -10,6 +10,11 @@ use Session;
 class Products extends Model
 {
 
+    public function getProductsPriceAttribute($value)
+    {
+        return "Rp <?php echo number_format($value, 0, ',', '.'); ?>";
+    }
+
     public function likedProducts()
     {
 

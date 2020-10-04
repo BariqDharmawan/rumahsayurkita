@@ -133,7 +133,6 @@
             <li class="{{ Request::is('admin/mustberestocked') ? 'active' : '' }}"><a href="{{ URL::to('admin/mustberestocked')}}"><i class="fa fa-circle-o"></i> {{ trans('labels.link_must_be_restocked') }}</a></li>
             <li class="{{ Request::is('admin/netprofitperitem') ? 'active' : '' }}"><a href="{{ URL::to('admin/netprofitperitem')}}"><i class="fa fa-circle-o"></i> {{ trans('labels.Net Profit Per Item') }}</a></li>
           </ul>
-          Net Profit Per Item
         </li>
       <?php } ?>
      

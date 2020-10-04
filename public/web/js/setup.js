@@ -122,7 +122,7 @@
       Xoffset: 15
     }); //Integration with hammer.js
 
-    var isTouchSupported = 'ontouchstart' in window;
+    var isTouchSupported = ('ontouchstart' in window);
 
     if (isTouchSupported) {
       //If touch device
@@ -356,7 +356,7 @@
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\www\working\laravel\laravel_groceries_git\laravel-ionic-android-shop\resources\assets\js\setup.js */"./resources/assets/js/setup.js");
+module.exports = __webpack_require__(/*! /var/www/html/rumahsayurkita/resources/assets/js/setup.js */"./resources/assets/js/setup.js");
 
 
 /***/ })

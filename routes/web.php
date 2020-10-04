@@ -16,9 +16,9 @@ else{
 Route::get('/maintance','Web\IndexController@maintance');
 
 Route::group(['namespace' => 'Web','middleware' => ['installer']], function () {
-Route::get('/login', 'CustomersController@login');
-Route::post('/process-login', 'CustomersController@processLogin');
-Route::get('/logout', 'CustomersController@logout')->middleware('Customer');
+    Route::get('/login', 'CustomersController@login');
+    Route::post('/process-login', 'CustomersController@processLogin');
+    Route::get('/logout', 'CustomersController@logout')->middleware('Customer');
 });
 Route::group(['namespace' => 'Web','middleware' => $middleware], function () {
 	Route::get('general_error/{msg}', function($msg) {
