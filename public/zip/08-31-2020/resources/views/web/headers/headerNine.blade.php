@@ -47,7 +47,7 @@
                </li>
                <li class="dropdown">
                    <button class="btn dropdown-toggle" type="button" >
-                    @lang('website.My Account') 
+                    @lang('website.My Accounts') 
                      </button>
                      <div class="dropdown-menu" >
 

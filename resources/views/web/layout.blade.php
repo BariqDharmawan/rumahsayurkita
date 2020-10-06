@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html class="no-js" lang="en">
   <head>
-@include('web.common.meta')
+  @include('web.common.meta')
 
   </head>
     <!-- dir="rtl" -->
-    <body class="animation-s<?php  echo $final_theme['transitions']; if(!empty(session('direction')) and session('direction')=='rtl') print ' bodyrtl';?> ">
+    <body class="animation-s @php echo $final_theme['transitions']; if(!empty(session('direction')) and session('direction')=='rtl') print ' bodyrtl'; @endphp">
       
       <div class="se-pre-con" id="loader" style="display: block">
         <div class="pre-loader">

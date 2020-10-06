@@ -7,7 +7,7 @@
 			<div class="col-12 col-lg-3">
 				<div class="heading">
 						<h2>
-								@lang('website.My Account')
+								@lang('website.My Accounts')
 						</h2>
 						<hr >
 					</div>

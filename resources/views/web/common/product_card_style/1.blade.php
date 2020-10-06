@@ -83,7 +83,6 @@
     <div class="content">
       <span class="tag">
         <?php
-
         $cat_name = '';
         foreach($products->categories as $key=>$category){
           $cat_name = $category->categories_name;
@@ -100,10 +99,10 @@
         @foreach($originalPrices as $orignal_price)
           @if ($loop->index == $loop->parent->index)
             @if(!empty($products->discount_price))
-              {{Session::get('symbol_left')}}&nbsp;{{$discount_price+0}}&nbsp;{{Session::get('symbol_right')}}
-              <span> {{Session::get('symbol_left')}}{{$orignal_price}}{{Session::get('symbol_right')}}</span>
+              &nbsp;{{$discount_price+0}}&nbsp;
+              <span>{{$orignal_price}}</span>
             @else
-              &nbsp;{{ $orignal_price }}&nbsp;{{Session::get('symbol_right')}}
+              &nbsp;{{ $orignal_price }}&nbsp;
             @endif
           @endif
         @endforeach

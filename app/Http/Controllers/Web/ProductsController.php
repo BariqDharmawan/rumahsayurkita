@@ -214,8 +214,42 @@ class ProductsController extends Controller
 
         $result['min_price'] = $min_price;
         $result['max_price'] = $max_price;
+
+        $originalPrices = [];
+        $discountPercentages = [];
+        $discountedPrices = [];
+        foreach ($result['products']['product_data'] as $products) {
+            $discount_percentage = '';
+            $discounted_price = '';
+            if (!empty($products->discount_price)) {
+                $discount_price = $products->discount_price * session('currency_value');
+            }
+            $orignal_price = $products->products_price * session('currency_value');
+
+            if (!empty($products->discount_price)) {
+                if (($orignal_price + 0) > 0) {
+                    $discounted_price = $orignal_price - $discount_price;
+                    $discount_percentage = $discounted_price / $orignal_price * 100;
+                }
+                else {
+                    $discount_percentage = 0;
+                    $discounted_price = 0;
+                }
+            }
+            $orignal_price = 'IDR ' . number_format($orignal_price, 0, ',', '.');
+            
+            array_push($discountPercentages, $discount_percentage);
+            array_push($discountedPrices, $discounted_price);
+            array_push($originalPrices, $orignal_price);
+        }
 // dd($result);
-        return view("web.shop", ['title' => $title, 'final_theme' => $final_theme])->with('result', $result);
+        return view("web.shop", [
+            'title' => $title, 
+            'final_theme' => $final_theme,
+            'originalPrices' => $originalPrices,
+            'discountPercentages' => $discountPercentages,
+            'discountedPrices' => $discountedPrices
+        ])->with('result', $result);
 
     }
 

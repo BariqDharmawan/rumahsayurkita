@@ -100,12 +100,10 @@
         <?php $__currentLoopData = $originalPrices; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $orignal_price): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
           <?php if($loop->index == $loop->parent->index): ?>
             <?php if(!empty($products->discount_price)): ?>
-              <?php echo e(Session::get('symbol_left')); ?>&nbsp;<?php echo e($discount_price+0); ?>&nbsp;<?php echo e(Session::get('symbol_right')); ?>
-
-              <span> <?php echo e(Session::get('symbol_left')); ?><?php echo e($orignal_price); ?><?php echo e(Session::get('symbol_right')); ?></span>
+              &nbsp;<?php echo e($discount_price+0); ?>&nbsp;
+              <span><?php echo e($orignal_price); ?></span>
             <?php else: ?>
-              &nbsp;<?php echo e($orignal_price); ?>&nbsp;<?php echo e(Session::get('symbol_right')); ?>
-
+              &nbsp;<?php echo e($orignal_price); ?>&nbsp;
             <?php endif; ?>
           <?php endif; ?>
         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
