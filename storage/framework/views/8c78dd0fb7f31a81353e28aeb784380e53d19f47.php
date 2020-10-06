@@ -83,7 +83,6 @@
     <div class="content">
       <span class="tag">
         <?php
-
         $cat_name = '';
         foreach($products->categories as $key=>$category){
           $cat_name = $category->categories_name;
@@ -92,7 +91,12 @@
         echo $cat_name;
         ?>
       </span>
-      <h5 class="title text-center"><a href="<?php echo e(URL::to('/product-detail/'.$products->products_slug)); ?>"><?php echo e($products->products_name); ?></a></h5>
+      <h5 class="title text-center">
+        <a href="<?php echo e(URL::to('/product-detail/'.$products->products_slug)); ?>">
+          <?php echo e($products->products_name); ?>
+
+        </a>
+      </h5>
       <div class="expand-detail">
         <?=stripslashes($products->products_description)?>
       </div>
@@ -101,9 +105,10 @@
           <?php if($loop->index == $loop->parent->index): ?>
             <?php if(!empty($products->discount_price)): ?>
               &nbsp;<?php echo e($discount_price+0); ?>&nbsp;
-              <span><?php echo e($orignal_price); ?></span>
+              <span><?php echo e('IDR ' . number_format($orignal_price + 0, 0, ',', '.')); ?></span>
             <?php else: ?>
-              &nbsp;<?php echo e($orignal_price); ?>&nbsp;
+              <?php echo e('IDR ' . number_format($orignal_price + 0, 0, ',', '.')); ?>
+
             <?php endif; ?>
           <?php endif; ?>
         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
@@ -118,17 +123,25 @@
 
             <button type="button" class="btn  btn-danger" products_id="<?php echo e($products->products_id); ?>"><?php echo app('translator')->get('website.Out of Stock'); ?></button>
           <?php elseif($products->products_min_order>1): ?>
-            <a class="btn  btn-secondary" href="<?php echo e(URL::to('/product-detail/'.$products->products_slug)); ?>"><?php echo app('translator')->get('website.View Detail'); ?></a>
+            <a class="btn  btn-secondary" href="<?php echo e(URL::to('/product-detail/'.$products->products_slug)); ?>">
+              <?php echo app('translator')->get('website.View Detail'); ?>
+            </a>
           <?php else: ?>
-            <button type="button" class="btn  btn-secondary cart" products_id="<?php echo e($products->products_id); ?>"><?php echo app('translator')->get('website.Add to Cart'); ?></button>
+            <button type="button" class="btn  btn-secondary cart" products_id="<?php echo e($products->products_id); ?>">
+              <?php echo app('translator')->get('website.Add to Cart'); ?>
+            </button>
           <?php endif; ?>
         <?php else: ?>
           <button type="button" class="btn btn-secondary active"><?php echo app('translator')->get('website.Added'); ?></button>
         <?php endif; ?>
       <?php elseif($products->products_type==1): ?>
-        <a class="btn  btn-secondary" href="<?php echo e(URL::to('/product-detail/'.$products->products_slug)); ?>"><?php echo app('translator')->get('website.View Detail'); ?></a>
+        <a class="btn  btn-secondary" href="<?php echo e(URL::to('/product-detail/'.$products->products_slug)); ?>">
+          <?php echo app('translator')->get('website.View Detail'); ?>
+        </a>
       <?php elseif($products->products_type==2): ?>
-        <a href="<?php echo e($products->products_url); ?>" target="_blank" class="btn  btn-secondary"><?php echo app('translator')->get('website.External Link'); ?></a>
+        <a href="<?php echo e($products->products_url); ?>" target="_blank" class="btn  btn-secondary">
+          <?php echo app('translator')->get('website.External Link'); ?>
+        </a>
       <?php endif; ?>
     </div>
   </article>

@@ -76,7 +76,7 @@
                                   <span class="fas fa-pencil-alt"></span>
                                 </a>
 
-                                <a href="<?php echo e(URL::to('/deleteCart?id='.$products->customers_basket_id)); ?>"  class="btn" >
+                                <a href="<?php echo e(URL::to('/deleteCart?id='.$products->customers_basket_id)); ?>"  class="btn">
                                   <span class="fas fa-times"></span>
                               </a>
                             </div>                          
@@ -106,14 +106,14 @@
                    ?>
                   <td class="item-price col-12 col-md-2">
                     <?php if(!empty($products->final_price)): ?>
-                    <?php echo e(Session::get('symbol_left')); ?><?php echo e($flash_price+0); ?><?php echo e(Session::get('symbol_right')); ?>
+                      <?php echo e('IDR ' . number_format($flash_price+0, 0, ',', '.')); ?>
 
                     <?php elseif(!empty($products->discount_price)): ?>
-                    <?php echo e(Session::get('symbol_left')); ?><?php echo e($discount_price+0); ?><?php echo e(Session::get('symbol_right')); ?>
+                      <?php echo e($discount_price+0); ?>
 
-                    <span> <?php echo e(Session::get('symbol_left')); ?><?php echo e($orignal_price+0); ?><?php echo e(Session::get('symbol_right')); ?></span>
+                      <span><?php echo e($orignal_price+0); ?></span>
                     <?php else: ?>
-                    <?php echo e(Session::get('symbol_left')); ?><?php echo e($orignal_price+0); ?><?php echo e(Session::get('symbol_right')); ?>
+                      <?php echo e($orignal_price+0); ?>
 
                     <?php endif; ?>
 
@@ -133,7 +133,7 @@
                     </td>
                     <td class="align-middle item-total col-12 col-md-1" align="center">
                       <span class="cart_price_<?php echo e($products->customers_basket_id); ?>">
-                        <?php echo e(Session::get('symbol_left')); ?><?php echo e($products->final_price * $products->customers_basket_quantity * session('currency_value')); ?><?php echo e(Session::get('symbol_right')); ?>
+                        <?php echo e('IDR ' . number_format($products->final_price * $products->customers_basket_quantity * session('currency_value'), 0, ',', '.')); ?>
 
                         </span>
                     </td>
@@ -202,17 +202,25 @@
                     }
 
                     ?>
-                    <?php echo e(Session::get('symbol_left')); ?><?php echo e(session('currency_value') * $price+0); ?><?php echo e(Session::get('symbol_right')); ?>
+                    <?php echo e('IDR ' . number_format(session('currency_value') * $price+0, 0, ',', '.')); ?>
 
                   </td>
                 </tr>
                 <tr>
-                  <th scope="row"><?php echo app('translator')->get('website.Discount(Coupon)'); ?></th>
-                  <td align="right"><?php echo e(Session::get('symbol_left')); ?><?php echo e(number_format((float)$coupon_amount, 2, '.', '')+0); ?><?php echo e(Session::get('symbol_right')); ?></td>
+                  <th scope="row">
+                    <?php echo app('translator')->get('website.Discount(Coupon)'); ?>
+                  </th>
+                  <td align="right">
+                    <?php echo e(number_format($coupon_amount + 0, 0, ',', '.')); ?>
+
+                  </td>
                 </tr>
                 <tr class="item-price">
                   <th scope="row"><?php echo app('translator')->get('website.Total'); ?></th>
-                  <td align="right" ><?php echo e(Session::get('symbol_left')); ?><?php echo e(session('currency_value') * $price+0-number_format((float)$coupon_amount, 2, '.', '')); ?><?php echo e(Session::get('symbol_right')); ?></td>
+                  <td align="right">
+                    <?php echo e('IDR ' . number_format(session('currency_value') * $price+0-number_format($coupon_amount, 0, ',', '.'), 0, ',', '.')); ?>
+
+                  </td>
                 </tr>
               </tbody>
             </table>

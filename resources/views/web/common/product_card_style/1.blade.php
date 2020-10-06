@@ -91,7 +91,11 @@
         echo $cat_name;
         ?>
       </span>
-      <h5 class="title text-center"><a href="{{ URL::to('/product-detail/'.$products->products_slug)}}">{{$products->products_name}}</a></h5>
+      <h5 class="title text-center">
+        <a href="{{ URL::to('/product-detail/'.$products->products_slug)}}">
+          {{$products->products_name}}
+        </a>
+      </h5>
       <div class="expand-detail">
         <?=stripslashes($products->products_description)?>
       </div>
@@ -100,9 +104,9 @@
           @if ($loop->index == $loop->parent->index)
             @if(!empty($products->discount_price))
               &nbsp;{{$discount_price+0}}&nbsp;
-              <span>{{$orignal_price}}</span>
+              <span>{{ 'IDR ' . number_format($orignal_price + 0, 0, ',', '.') }}</span>
             @else
-              &nbsp;{{ $orignal_price }}&nbsp;
+              {{ 'IDR ' . number_format($orignal_price + 0, 0, ',', '.') }}
             @endif
           @endif
         @endforeach
@@ -117,17 +121,25 @@
 
             <button type="button" class="btn  btn-danger" products_id="{{$products->products_id}}">@lang('website.Out of Stock')</button>
           @elseif($products->products_min_order>1)
-            <a class="btn  btn-secondary" href="{{ URL::to('/product-detail/'.$products->products_slug)}}">@lang('website.View Detail')</a>
+            <a class="btn  btn-secondary" href="{{ URL::to('/product-detail/'.$products->products_slug)}}">
+              @lang('website.View Detail')
+            </a>
           @else
-            <button type="button" class="btn  btn-secondary cart" products_id="{{$products->products_id}}">@lang('website.Add to Cart')</button>
+            <button type="button" class="btn  btn-secondary cart" products_id="{{$products->products_id}}">
+              @lang('website.Add to Cart')
+            </button>
           @endif
         @else
           <button type="button" class="btn btn-secondary active">@lang('website.Added')</button>
         @endif
       @elseif($products->products_type==1)
-        <a class="btn  btn-secondary" href="{{ URL::to('/product-detail/'.$products->products_slug)}}">@lang('website.View Detail')</a>
+        <a class="btn  btn-secondary" href="{{ URL::to('/product-detail/'.$products->products_slug)}}">
+          @lang('website.View Detail')
+        </a>
       @elseif($products->products_type==2)
-        <a href="{{$products->products_url}}" target="_blank" class="btn  btn-secondary">@lang('website.External Link')</a>
+        <a href="{{$products->products_url}}" target="_blank" class="btn  btn-secondary">
+          @lang('website.External Link')
+        </a>
       @endif
     </div>
   </article>

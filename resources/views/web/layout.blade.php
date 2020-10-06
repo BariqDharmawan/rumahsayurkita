@@ -37,10 +37,10 @@
         <!-- End Top Offer -->
         
         <!-- Header Content -->
-        <?php  echo $final_theme['header']; ?>        
+        {!! $final_theme['header'] !!}
         
         <!-- End Header Content -->
-        <?php  echo $final_theme['mobile_header']; ?>
+        {!! $final_theme['mobile_header'] !!}
       <!-- End of Header Sections -->
       
        <!-- NOTIFICATION CONTENT -->

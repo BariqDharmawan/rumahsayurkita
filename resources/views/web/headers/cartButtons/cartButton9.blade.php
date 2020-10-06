@@ -35,13 +35,22 @@
             </div>
             <div class="item-detail">
                 <h3 class="item-name">{{$cart_data->products_name}}</h3>
-                <div class="item-s">{{$cart_data->customers_basket_quantity}} x {{Session::get('symbol_left')}}{{$cart_data->final_price*session('currency_value')}}{{Session::get('symbol_right')}}
-                <a href="{{ URL::to('/deleteCart?id='.$cart_data->customers_basket_id)}}"><i class="fas fa-trash"></i></a></div>
+                <div class="item-s">
+                    {{ $cart_data->customers_basket_quantity }} x 
+                    {{ 'IDR ' . number_format($cart_data->final_price*session('currency_value'), 0, ',', '.') }}
+                <a href="{{ URL::to('/deleteCart?id='.$cart_data->customers_basket_id)}}">
+                    <i class="fas fa-trash"></i>
+                </a>
+            </div>
            </div>
         </li>
         @endforeach
-        <li>
-            <span class="item-summary">@lang('website.SubTotal')&nbsp;:&nbsp;<span>{{Session::get('symbol_left')}}{{ $total_amount*session('currency_value') }}{{Session::get('symbol_right')}}</span>
+        <li style="text-align: center">
+            <span class="item-summary">
+                @lang('website.SubTotal')
+                <span>    
+                    {{ 'IDR ' . number_format($total_amount*session('currency_value'), 0, ',', '.') }}
+                </span>
             </span>
         </li>
     

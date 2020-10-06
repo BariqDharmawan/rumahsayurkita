@@ -35,14 +35,24 @@
             </div>
             <div class="item-detail">
                 <h3 class="item-name"><?php echo e($cart_data->products_name); ?></h3>
-                <div class="item-s"><?php echo e($cart_data->customers_basket_quantity); ?> x <?php echo e(Session::get('symbol_left')); ?><?php echo e($cart_data->final_price*session('currency_value')); ?><?php echo e(Session::get('symbol_right')); ?>
+                <div class="item-s">
+                    <?php echo e($cart_data->customers_basket_quantity); ?> x 
+                    <?php echo e('IDR ' . number_format($cart_data->final_price*session('currency_value'), 0, ',', '.')); ?>
 
-                <a href="<?php echo e(URL::to('/deleteCart?id='.$cart_data->customers_basket_id)); ?>"><i class="fas fa-trash"></i></a></div>
+                <a href="<?php echo e(URL::to('/deleteCart?id='.$cart_data->customers_basket_id)); ?>">
+                    <i class="fas fa-trash"></i>
+                </a>
+            </div>
            </div>
         </li>
         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-        <li>
-            <span class="item-summary"><?php echo app('translator')->get('website.SubTotal'); ?>&nbsp;:&nbsp;<span><?php echo e(Session::get('symbol_left')); ?><?php echo e($total_amount*session('currency_value')); ?><?php echo e(Session::get('symbol_right')); ?></span>
+        <li style="text-align: center">
+            <span class="item-summary">
+                <?php echo app('translator')->get('website.SubTotal'); ?>
+                <span>    
+                    <?php echo e('IDR ' . number_format($total_amount*session('currency_value'), 0, ',', '.')); ?>
+
+                </span>
             </span>
         </li>
     

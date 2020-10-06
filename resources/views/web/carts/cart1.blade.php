@@ -74,7 +74,7 @@
                                   <span class="fas fa-pencil-alt"></span>
                                 </a>
 
-                                <a href="{{ URL::to('/deleteCart?id='.$products->customers_basket_id)}}"  class="btn" >
+                                <a href="{{ URL::to('/deleteCart?id='.$products->customers_basket_id)}}"  class="btn">
                                   <span class="fas fa-times"></span>
                               </a>
                             </div>                          
@@ -104,12 +104,12 @@
                    ?>
                   <td class="item-price col-12 col-md-2">
                     @if(!empty($products->final_price))
-                    {{Session::get('symbol_left')}}{{$flash_price+0}}{{Session::get('symbol_right')}}
+                      {{ 'IDR ' . number_format($flash_price+0, 0, ',', '.') }}
                     @elseif(!empty($products->discount_price))
-                    {{Session::get('symbol_left')}}{{$discount_price+0}}{{Session::get('symbol_right')}}
-                    <span> {{Session::get('symbol_left')}}{{$orignal_price+0}}{{Session::get('symbol_right')}}</span>
+                      {{ $discount_price+0 }}
+                      <span>{{ $orignal_price+0 }}</span>
                     @else
-                    {{Session::get('symbol_left')}}{{$orignal_price+0}}{{Session::get('symbol_right')}}
+                      {{ $orignal_price+0 }}
                     @endif
 
                    </td>
@@ -128,7 +128,7 @@
                     </td>
                     <td class="align-middle item-total col-12 col-md-1" align="center">
                       <span class="cart_price_{{$products->customers_basket_id}}">
-                        {{Session::get('symbol_left')}}{{$products->final_price * $products->customers_basket_quantity * session('currency_value')}}{{Session::get('symbol_right')}}
+                        {{ 'IDR ' . number_format($products->final_price * $products->customers_basket_quantity * session('currency_value'), 0, ',', '.') }}
                         </span>
                     </td>
                   </tr>
@@ -196,16 +196,22 @@
                     }
 
                     @endphp
-                    {{Session::get('symbol_left')}}{{session('currency_value') * $price+0}}{{Session::get('symbol_right')}}
+                    {{ 'IDR ' . number_format(session('currency_value') * $price+0, 0, ',', '.') }}
                   </td>
                 </tr>
                 <tr>
-                  <th scope="row">@lang('website.Discount(Coupon)')</th>
-                  <td align="right">{{Session::get('symbol_left')}}{{number_format((float)$coupon_amount, 2, '.', '')+0}}{{Session::get('symbol_right')}}</td>
+                  <th scope="row">
+                    @lang('website.Discount(Coupon)')
+                  </th>
+                  <td align="right">
+                    {{ number_format($coupon_amount + 0, 0, ',', '.') }}
+                  </td>
                 </tr>
                 <tr class="item-price">
                   <th scope="row">@lang('website.Total')</th>
-                  <td align="right" >{{Session::get('symbol_left')}}{{session('currency_value') * $price+0-number_format((float)$coupon_amount, 2, '.', '')}}{{Session::get('symbol_right')}}</td>
+                  <td align="right">
+                    {{ 'IDR ' . number_format(session('currency_value') * $price+0-number_format($coupon_amount, 0, ',', '.'), 0, ',', '.') }}
+                  </td>
                 </tr>
               </tbody>
             </table>

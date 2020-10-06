@@ -236,7 +236,6 @@ class ProductsController extends Controller
                     $discounted_price = 0;
                 }
             }
-            $orignal_price = 'IDR ' . number_format($orignal_price, 0, ',', '.');
             
             array_push($discountPercentages, $discount_percentage);
             array_push($discountedPrices, $discounted_price);
